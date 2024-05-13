@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Enviar Ubicación al Servidor</title>
+</head>
+<body>
+    <button id="enviar-ubicacion">Enviar Ubicación</button>
+
+    <script>
+        function enviarUbicacion() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var latitud = position.coords.latitude;
+                    var longitud = position.coords.longitude;
+                    var data = { latitud: latitud, longitud: longitud };
+
+                    fetch('http://172.20.82.245:5000/ruta', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify(data),
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Error al enviar la ubicación al servidor');
+                        }
+                        console.log('Ubicación enviada al servidor exitosamente');
+                    })
+                    .catch(error => {
+                        console.error('Error:', error);
+                    });
+
+                    // Llamar a la función cada 5 segundos (ejemplo)
+                    setTimeout(enviarUbicacion, 5000);
+                }, function(error) {
+                    console.error('Error al obtener la ubicación:', error);
+                });
+            } else {
+                console.error('Geolocalización no soportada por el navegador');
+            }
+        }
+
+        // Iniciar el envío de ubicación al cargar la página
+        enviarUbicacion();
+    </script>
+</body>
+</html>
