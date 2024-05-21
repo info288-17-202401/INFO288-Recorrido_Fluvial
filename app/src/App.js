@@ -17,8 +17,10 @@ L.Marker.prototype.options.icon = DefaultIcon;
 function App() {
     const [location, setLocation] = useState(null);
     const [status, setStatus] = useState('');
+    const [ports, setPorts] = useState([]);
 
     useEffect(() => {
+        // Obtener ubicación actual
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(position => {
                 const { latitude, longitude } = position.coords;
@@ -39,6 +41,12 @@ function App() {
         } else {
             alert("Geolocation is not supported by this browser.");
         }
+
+        // Obtener puertos desde la base de datos
+        fetch('http://127.0.0.1:5000/ports')
+            .then(response => response.json())
+            .then(data => setPorts(data))
+            .catch(error => console.error('Error:', error));
     }, []);
 
     return (
@@ -55,6 +63,13 @@ function App() {
                                 You are here.
                             </Popup>
                         </Marker>
+                        {ports.map(port => (
+                            <Marker key={port._id} position={[port.latitude, port.longitude]}>
+                                <Popup>
+                                    {port.name}
+                                </Popup>
+                            </Marker>
+                        ))}
                     </MapContainer>
                 ) : (
                     <p>Getting location...</p>
