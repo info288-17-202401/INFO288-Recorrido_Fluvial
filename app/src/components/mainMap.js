@@ -1,6 +1,5 @@
-// MainMap.js
 import React, { useState, useEffect } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, Polyline } from 'react-leaflet';
 import L from 'leaflet';
 import './mainMap.css';  // Importa el archivo CSS
 
@@ -19,6 +18,7 @@ export const MainMap = () => {
     const [location, setLocation] = useState(null);
     const [status, setStatus] = useState('');
     const [ports, setPorts] = useState([]);
+    const [route, setRoute] = useState([]);
 
     useEffect(() => {
         // Obtener ubicación actual
@@ -48,6 +48,19 @@ export const MainMap = () => {
             .then(response => response.json())
             .then(data => setPorts(data))
             .catch(error => console.error('Error:', error));
+
+        // Obtener la ruta desde la base de datos
+            fetch('http://127.0.0.1:5000/route/rutaA')
+        .then(response => response.json())
+        .then(data => {
+            console.log('Route data:', data);  // datos recibidos
+            if (data && Array.isArray(data)) {
+            setRoute(data);
+            } else {
+            console.error('Unexpected data format for route:', data);
+            }
+        })
+        .catch(error => console.error('Error:', error));
     }, []);
 
     return (
@@ -70,6 +83,11 @@ export const MainMap = () => {
                             </Popup>
                         </Marker>
                     ))}
+
+                    {route.length > 0 && (
+                        <Polyline positions={route.map(point => [point.latitude, point.longitude])} color="red" />
+                    )}
+                    
                 </MapContainer>
             ) : (
                 <p>Getting location...</p>
