@@ -11,3 +11,8 @@ body, html, #root {
   align-items: center;
   justify-content: center;
 }
+
+.mainMap {
+  height: 100%;
+  width: 100%;
+}
