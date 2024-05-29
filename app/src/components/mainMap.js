@@ -18,7 +18,7 @@ L.Marker.prototype.options.icon = DefaultIcon;
 
 const portsLatitude = [-39.812100,-39.824729 ,-39.832165];  // los puntos deben ir en orden para mostrar la ruta 
 const portsLongitude = [-73.247879,-73.254681 ,-73.252607]; // correctamente, si no hacen clipeo
-const tableData = ["Elemento 1", "Elemento 2", "Elemento 3"]; // Datos para la tabla
+const tableData = ["rutaA","rutaB","rutaC"]; // Datos para la tabla
 //
 export const MainMap = () => {
     const [location, setLocation] = useState(null);
@@ -102,7 +102,8 @@ export const MainMap = () => {
                     {ports.map((port, index) => (
                         <Marker key={index} position={[port.latitude, port.longitude]}>
                             <Popup>
-                                <ListA data={tableData} width="300px" height="200px" />
+                                {port.name + " \n Rutas:"}
+                                <ListA data={tableData} width="300px" height="200px" setShowRoute={setShowRoute} />
                             </Popup>
                         </Marker>
                     ))}
