@@ -24,6 +24,7 @@ export const MainMap = () => {
     const [location, setLocation] = useState(null);
     const [status, setStatus] = useState('');
     const [showRoute, setShowRoute] = useState(false);
+    const [ports, setPorts] = useState([])
 
     useEffect(() => {
         // Obtener ubicación actual
@@ -58,6 +59,32 @@ export const MainMap = () => {
             alert("Geolocation is not supported by this browser.");
         }
     }, []);
+    
+    useEffect(() => {
+        const fetchPorts = async () => {
+          try {
+            const response = await fetch('http://127.0.0.1:5000/ports', {
+              method: 'GET',
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+            if (!response.ok) {
+              throw new Error('Network response was not ok');
+            }
+            const portsData = await response.json();
+            setPorts(portsData);
+          } catch (error) {
+            console.error('Error fetching ports:', error);
+          }
+        };
+    
+        fetchPorts(); // Llama  a la función fetchPorts para ejecutarla
+    
+    }, []); // Asegúrate de dejar el array de dependencias vacío para que se ejecute solo una vez
+    
+    console.log("test: ")
+    console.log(ports)
 
     return (
         <div className="MainMap">
@@ -72,10 +99,10 @@ export const MainMap = () => {
                             You are here.
                         </Popup>
                     </Marker>
-                    {portsLatitude.map((lat, index) => (
-                        <Marker key={index} position={[lat, portsLongitude[index]]}>
+                    {ports.map((port, index) => (
+                        <Marker key={index} position={[port.latitude, port.longitude]}>
                             <Popup>
-                            <ListA data={tableData} width="300px" height="200px" setShowRoute={setShowRoute} />
+                                <ListA data={tableData} width="300px" height="200px" />
                             </Popup>
                         </Marker>
                     ))}

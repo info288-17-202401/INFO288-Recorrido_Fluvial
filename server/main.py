@@ -30,7 +30,9 @@ def location():
 
 @app.route('/ports', methods=['GET'])
 def get_ports():
+    print("asdas")
     ports = list(ports_collection.find())
+    print(ports)
     return JSONEncoder().encode(ports)
 
 @app.route('/route/<route_name>', methods=['GET'])
@@ -44,5 +46,7 @@ def get_route(route_name):
 
 
 if __name__ == '__main__':
+    
+    
     app.run(debug=True)
 
