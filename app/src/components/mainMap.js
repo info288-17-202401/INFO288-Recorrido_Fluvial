@@ -4,7 +4,7 @@ import L from 'leaflet';
 import './mainMap.css';  // Importa el archivo CSS
 import ListA from './listA'; // Importa el componente ListA
 import ShowRoutes from './showRoutes'; // Importa el componente ShowRoutes
-
+import ShipList from './shipList';
 // Corrige el problema con los íconos predeterminados de Leaflet
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
@@ -19,11 +19,17 @@ L.Marker.prototype.options.icon = DefaultIcon;
 const portsLatitude = [-39.812100,-39.824729 ,-39.832165];  // los puntos deben ir en orden para mostrar la ruta 
 const portsLongitude = [-73.247879,-73.254681 ,-73.252607]; // correctamente, si no hacen clipeo
 const tableData = ["rutaA","rutaB","rutaC"]; // Datos para la tabla
+
+const ships = [
+    { patente: 'ABC123', ruta: 'Ruta A' },
+    { patente: 'XYZ456', ruta: 'Ruta B' },
+    { patente: 'DEF789', ruta: 'Ruta C' }
+  ];
 //
 export const MainMap = () => {
     const [location, setLocation] = useState(null);
     const [status, setStatus] = useState('');
-    const [showRoute, setShowRoute] = useState(false);
+    const [showShips,setShowShips] = useState(true)
     const [ports, setPorts] = useState([])
 
     useEffect(() => {
@@ -103,15 +109,20 @@ export const MainMap = () => {
                         <Marker key={index} position={[port.latitude, port.longitude]}>
                             <Popup>
                                 {port.name + " \n Rutas:"}
-                                <ListA data={tableData} width="300px" height="200px" setShowRoute={setShowRoute} />
+                                <ListA data={tableData} width="300px" height="200px" />
                             </Popup>
                         </Marker>
                     ))}
+                    
                 </MapContainer>
             ) : (
-                <p>Getting location...</p>
-            )}
-            {status && <p>Status: {status}</p>}
+                    <p>Getting location...</p>
+                )}
+            
+            
+            
+            <ShipList ships={ships} />
         </div>
     );
 };
+

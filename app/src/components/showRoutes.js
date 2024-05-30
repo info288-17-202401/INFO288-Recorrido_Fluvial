@@ -9,7 +9,7 @@ const ShowRoutes = ({ portsLatitude, portsLongitude }) => {
     console.log(route);
 
     return (
-        <Polyline positions={route} pathOptions={{ noClip: true }} color="blue" />
+        <Polyline positions={route} pathOptions={{ noClip: true }} color="blue" />    
     );
 };
 
