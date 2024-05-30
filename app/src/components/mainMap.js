@@ -108,8 +108,9 @@ export const MainMap = () => {
                     {ports.map((port, index) => (
                         <Marker key={index} position={[port.latitude, port.longitude]}>
                             <Popup>
-                                {port.name + " \n Rutas:"}
+                            
                                 <ListA data={tableData} width="300px" height="200px" />
+                                <ShipList ships={ships} />
                             </Popup>
                         </Marker>
                     ))}
@@ -119,9 +120,9 @@ export const MainMap = () => {
                     <p>Getting location...</p>
                 )}
             
+            {/**    <ShipList ships={ships} /> */}
             
             
-            <ShipList ships={ships} />
         </div>
     );
 };

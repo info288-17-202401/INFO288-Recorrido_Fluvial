@@ -1,11 +1,17 @@
 import React, { useState, useEffect } from 'react';
-import './listA.css'; // Importa el archivo CSS para estilos
+import './listA.css';
 import ShowRoutes from './showRoutes';
 
 const ListA = ({ data, width, height }) => {
     const [routeId, setRouteId] = useState(null);
     const [routes, setRoutes] = useState([]);
-    const consults = [`http://127.0.0.1:5000/route/rutaA`,`http://127.0.0.1:5000/route/rutaB`,`http://127.0.0.1:5000/route/rutaC`]
+    const [showPolyline, setShowPolyline] = useState(true); // Estado para controlar la visibilidad de la polilínea
+
+    const consults = [
+        'http://127.0.0.1:5000/route/rutaA',
+        'http://127.0.0.1:5000/route/rutaB',
+        'http://127.0.0.1:5000/route/rutaC'
+    ];
 
     const handleClick = (item, index) => {
         setRouteId(index);
@@ -36,21 +42,23 @@ const ListA = ({ data, width, height }) => {
 
     }, [routeId]);
 
-    console.log(routes);
+    const handleTogglePolyline = () => {
+        setShowPolyline(prevShowPolyline => !prevShowPolyline);
+    };
 
     return (
         <div className="additional-component" style={{ width: width, height: height }}>
             <table>
                 <thead>
                     <tr>
-                        <th>Elemento</th>
+                        <th>Rutas</th>
                     </tr>
                 </thead>
                 <tbody>
                     {data.map((item, index) => (
                         <tr key={index} onClick={() => handleClick(item, index)}>
                             <td>{item}</td>
-                            {routeId === index && routes.length > 0 && (
+                            {routeId === index && showPolyline && routes.length > 0 && (
                                 <ShowRoutes
                                     portsLatitude={routes.map(route => route.latitude)}
                                     portsLongitude={routes.map(route => route.longitude)}
@@ -60,10 +68,14 @@ const ListA = ({ data, width, height }) => {
                     ))}
                 </tbody>
             </table>
+            <button onClick={handleTogglePolyline}>
+                {showPolyline ? 'Ocultar ruta' : 'Mostrar ruta'}
+            </button>
         </div>
     );
 };
 
 export default ListA;
+
 
 

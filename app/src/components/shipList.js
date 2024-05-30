@@ -5,6 +5,13 @@ const ShipList = ({ ships }) => {
   const handleClick = (ruta) => {
     console.log('Ruta:', ruta);
   };
+  const portsLatitude = [-39.812100];  
+  const portsLongitude = [-73.247879]; 
+  
+  //fetch para buscar barcos activos
+  //y dibujar en main map el barco cada x segundos en su pos actual
+  // https://www.imyfone.com/change-location/simulate-gps-movement/#1
+  
 
   return (
     <div className="shipList">
