@@ -1,0 +1,39 @@
+/* sidebar.css */
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px;
+    height: 100%;
+    background-color: #333;
+    color: white;
+    padding-top: 20px;
+    z-index: 1000; /* Asegura que la barra lateral esté sobre otros elementos */
+}
+
+.sidebar a {
+    padding: 10px 15px;
+    text-decoration: none;
+    font-size: 18px;
+    color: white;
+    display: block;
+}
+
+.sidebar a:hover {
+    background-color: #575757;
+}
+
+.sidebar .submenu {
+    display: none;
+    background-color: #444;
+    margin-left: 15px;
+}
+
+.sidebar .submenu a {
+    padding: 8px 15px;
+    font-size: 16px;
+}
+
+.sidebar .active + .submenu {
+    display: block;
+}
