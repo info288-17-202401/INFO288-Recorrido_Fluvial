@@ -42,7 +42,8 @@ def agregarTaxi(conductor, patente, longitud, latitud, velocidad):
         "eliminado": False,
         "updatedAt": datetime.now(),
         "deletedAt": None,
-        "status": "Activo"
+        "status": "Activo",
+        "nombreRuta": ""
     }
     try:
         result = taxis.insert_one(documento)
@@ -52,9 +53,10 @@ def agregarTaxi(conductor, patente, longitud, latitud, velocidad):
 
 def obtenerTaxi(patente):
     try:
-        result = taxis.find_one({"patente": patente})
+        result = taxis.find_one({"patente": patente, "status": "Activo"})
         if result:
             print(f"Documento encontrado: {result}")
+            return result
         else:
             print("No se encontró el documento")
     except Exception as e:
@@ -69,6 +71,27 @@ def eliminarTaxi(patente):
         print(f"Documento eliminado: {result.modified_count}")
     except Exception as e:
         print(f"Error al eliminar documento: {e}")
+
+def activarTaxi(patente, nombreRuta):
+    try:
+        result = taxis.update_one(
+            {"patente": patente},
+            {"$set": {"status": "Activo", "nombreRuta": nombreRuta, "updatedAt": datetime.now()}}
+        )
+        print(f"Documento activado: {result.modified_count}")
+    except Exception as e:
+        print(f"Error al activar documento: {e}")
+
+def desactivarTaxi(patente):
+    try:
+        result = taxis.update_one(
+            {"patente": patente},
+            {"$set": {"status": "Inactivo", "updatedAt": datetime.now()}}
+        )
+        print(f"Documento desactivado: {result.modified_count}")
+    except Exception as e:
+        print(f"Error al desactivar documento: {e}")
+
 
 def obtenerTaxis():
     try:

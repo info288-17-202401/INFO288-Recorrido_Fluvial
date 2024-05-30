@@ -2,7 +2,11 @@ from flask import Flask, request, jsonify
 from flask_cors import CORS
 from pymongo import MongoClient
 import json
+from bson import json_util
 from bson import ObjectId
+
+from querys import obtenerTaxi, activarTaxi, desactivarTaxi, actualizarTaxiPos, obtenerTaxisActivos 
+from rutas import agregarRuta, obtenerRuta, obtenerRutas
 
 app = Flask(__name__)
 CORS(app)
@@ -47,6 +51,71 @@ def get_route(route_name):
         return jsonify({"error": "Route not found"}), 404
 
 
+#RUTAS DE TAXIS
+@app.route('/getTaxi', methods=['GET'])
+def get_taxi():
+    patente = request.args.get('patente')
+    print(patente)
+    taxi = obtenerTaxi(patente)
+    print("SOY ALGO MAS QUE UN TAXI")
+    print(taxi)
+    return json.dumps(taxi, default=json_util.default)
+
+@app.route('/getActiveTaxis', methods=['GET'])
+def get_active_taxis():
+    taxis = obtenerTaxisActivos()
+    if not taxis:
+        return jsonify(status="null", data=None)
+    else:
+        return json.dumps(taxis, default=json_util.default)
+
+@app.route('/activateTaxi', methods=['POST'])
+def activate_taxi():
+    data = request.json
+    activarTaxi(data['patente'], data["nombreRuta"])
+    print(data)
+    return jsonify(status="success", data=data)
+
+@app.route('/deactivateTaxi', methods=['POST'])
+def deactivate_taxi():
+    data = request.json
+    desactivarTaxi(data['patente'])
+    print(data)
+    return jsonify(status="success", data=data)
+
+#Actualizar ubicacion
+@app.route('/updateLocation', methods=['POST'])
+def update_location():
+    data = request.json
+    actualizarTaxiPos(data['patente'], data['longitud'], data['latitud'])
+    print(data)
+    return jsonify(status="success", data=data)
+    
+
+#RUTAS DE RUTAS.py
+@app.route('/addRoute', methods=['POST'])
+def add_route1():
+    data = request.json
+    agregarRuta(data['nombre'], data['descripcion'], data['distancia'], data['estimado'], data['puntos'])
+    print(data)
+    return jsonify(status="success", data=data)
+
+@app.route('/getRoute', methods=['GET'])
+def get_route1():
+    nombre = request.args.get('nombre')
+    print(nombre)
+    ruta = obtenerRuta(nombre)
+    print(ruta)
+    return json.dumps(ruta, default=json_util.default)
+
+@app.route('/getRoutes', methods=['GET'])
+def get_routes1():
+    rutas = obtenerRutas()
+    if not rutas:
+        return jsonify(status="null", data=None)
+    else:
+        return json.dumps(rutas, default=json_util.default)
+    
 
 if __name__ == '__main__':
     
