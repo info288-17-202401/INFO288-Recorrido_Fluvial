@@ -1,0 +1,80 @@
+[{
+  "_id": {
+    "$oid": "66562fb8485adcb4a93ad303"
+  },
+  "Nombre": "Recorrido Parque Central",
+  "descripcion": "Ruta desde el punto A hasta el punto B pasando por varios puntos de interés.",
+  "Distancia": 5.3,
+  "Estimado": 45,
+  "Puntos": [
+    {
+      "type": "Point",
+      "coordinates": [
+        -73.97,
+        40.77
+      ]
+    },
+    {
+      "type": "Point",
+      "coordinates": [
+        -73.98,
+        40.76
+      ]
+    },
+    {
+      "type": "Point",
+      "coordinates": [
+        -73.99,
+        40.75
+      ]
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-05-28T15:25:44.764Z"
+  },
+  "updatedAt": {
+    "$date": "2024-05-28T15:25:44.764Z"
+  },
+  "status": "Activo",
+  "deletedAt": null
+},
+{
+  "_id": {
+    "$oid": "66562fb8485adcb4a93ad304"
+  },
+  "Nombre": "Recorrido Montaña",
+  "descripcion": "Ruta de senderismo desde el punto C hasta el punto D.",
+  "Distancia": 8.5,
+  "Estimado": 120,
+  "Puntos": [
+    {
+      "type": "Point",
+      "coordinates": [
+        -74.01,
+        40.7
+      ]
+    },
+    {
+      "type": "Point",
+      "coordinates": [
+        -74.02,
+        40.71
+      ]
+    },
+    {
+      "type": "Point",
+      "coordinates": [
+        -74.03,
+        40.72
+      ]
+    }
+  ],
+  "createdAt": {
+    "$date": "2024-05-28T15:25:44.764Z"
+  },
+  "updatedAt": {
+    "$date": "2024-05-28T15:25:44.764Z"
+  },
+  "status": "Inactivo",
+  "deletedAt": null
+}]
