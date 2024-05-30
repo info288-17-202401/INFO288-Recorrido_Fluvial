@@ -9,6 +9,15 @@
     color: white;
     padding-top: 20px;
     z-index: 1000; /* Asegura que la barra lateral esté sobre otros elementos */
+    transition: transform 0.3s ease-in-out;
+}
+
+.sidebar.hidden {
+    transform: translateX(-100%);
+}
+
+.sidebar.show {
+    transform: translateX(0);
 }
 
 .sidebar a {
@@ -36,4 +45,19 @@
 
 .sidebar .active + .submenu {
     display: block;
+}
+
+/* Media query for mobile screens */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+    }
+
+    .sidebar.show {
+        transform: translateX(0);
+    }
+
+    .sidebar-toggle {
+        display: block;
+    }
 }
