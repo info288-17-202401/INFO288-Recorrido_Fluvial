@@ -83,8 +83,8 @@ export const MainMap = () => {
     
     }, []); // Asegúrate de dejar el array de dependencias vacío para que se ejecute solo una vez
     
-    console.log("test: ")
-    console.log(ports)
+    //console.log("test: ")
+    //console.log(ports)
 
     return (
         <div className="MainMap">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { MainMap } from './components/mainMap';
 import 'leaflet/dist/leaflet.css';
-import './App.css';  // Importa los estilos globales
+import './App.css';  // Importa los estilos globales 
 
 function App() {
     return (
