@@ -1,0 +1,72 @@
+[{
+  "_id": {
+    "$oid": "66568ab91f5219f6932b0ce9"
+  },
+  "latitude": -39.814916,
+  "longitude": -73.249028,
+  "name": "Barrio Flotante"
+},
+{
+  "_id": {
+    "$oid": "66568ae41f5219f6932b0cea"
+  },
+  "latitude": -39.832,
+  "longitude": -73.26625,
+  "name": "Torobayo"
+},
+{
+  "_id": {
+    "$oid": "66568af51f5219f6932b0ceb"
+  },
+  "latitude": -39.832056,
+  "longitude": -73.252806,
+  "name": "Uach Miraflores"
+},
+{
+  "_id": {
+    "$oid": "66568b061f5219f6932b0cec"
+  },
+  "latitude": -39.821361,
+  "longitude": -73.250722,
+  "name": "San Sebastián"
+},
+{
+  "_id": {
+    "$oid": "66568b1e1f5219f6932b0ced"
+  },
+  "latitude": -39.814167,
+  "longitude": -73.2505,
+  "name": "Los Castaños"
+},
+{
+  "_id": {
+    "$oid": "66568b2e1f5219f6932b0cee"
+  },
+  "latitude": -39.810972,
+  "longitude": -73.249028,
+  "name": "UACH Facea"
+},
+{
+  "_id": {
+    "$oid": "66568b3f1f5219f6932b0cef"
+  },
+  "latitude": -39.809194,
+  "longitude": -73.242389,
+  "name": "Carampangue"
+},
+{
+  "_id": {
+    "$oid": "66568b591f5219f6932b0cf0"
+  },
+  "latitude": -39.813805,
+  "longitude": -73.235389,
+  "name": "Terminal Buses"
+},
+{
+  "_id": {
+    "$oid": "6657cc637a28a10011c0a724"
+  },
+  "latitude": -39.809324,
+  "longitude": -73.20962,
+  "name": "Collico"
+}]
