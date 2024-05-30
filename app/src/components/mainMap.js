@@ -148,11 +148,7 @@ export const MainMap = () => {
                 </MapContainer>
             ) : (
                 <p>Getting location...</p>
-            )}
-
-            {status && <p>Status: {status}</p>}
-
-            
+            )}            
         </div>
     );
 };

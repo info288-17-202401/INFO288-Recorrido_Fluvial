@@ -4,6 +4,7 @@ const DriverView = ({ mapWidth, mapHeight })=> {
     return (
         <div style={{ width: mapWidth, height: mapHeight }}>
             aqui trabajan ustedes
+            componentes aqui
         </div>
     );
 }
