@@ -94,14 +94,14 @@ def update_location():
 
 #RUTAS DE RUTAS.py
 @app.route('/addRoute', methods=['POST'])
-def add_route():
+def add_route1():
     data = request.json
     agregarRuta(data['nombre'], data['descripcion'], data['distancia'], data['estimado'], data['puntos'])
     print(data)
     return jsonify(status="success", data=data)
 
 @app.route('/getRoute', methods=['GET'])
-def get_route():
+def get_route1():
     nombre = request.args.get('nombre')
     print(nombre)
     ruta = obtenerRuta(nombre)
@@ -109,7 +109,7 @@ def get_route():
     return json.dumps(ruta, default=json_util.default)
 
 @app.route('/getRoutes', methods=['GET'])
-def get_routes():
+def get_routes1():
     rutas = obtenerRutas()
     if not rutas:
         return jsonify(status="null", data=None)
