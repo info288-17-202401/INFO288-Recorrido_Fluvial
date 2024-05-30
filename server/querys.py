@@ -25,7 +25,8 @@ documento = {
     "eliminado": False,
     "updatedAt": datetime.now(),
     "deletedAt": None,
-    "status": "Activo"
+    "status": "Activo",
+    "nombreRuta": ""
 }
 
 def agregarTaxi(conductor, patente, longitud, latitud, velocidad):
