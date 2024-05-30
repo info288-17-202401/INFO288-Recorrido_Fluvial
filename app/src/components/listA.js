@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './listA.css';
 import ShowRoutes from './showRoutes';
 
-const ListA = ({ data, width, height }) => {
+const ListA = ({ data, width, height, onToggleMarker }) => {
     const [routeId, setRouteId] = useState(null);
     const [routes, setRoutes] = useState([]);
     const [showPolyline, setShowPolyline] = useState(true); // Estado para controlar la visibilidad de la polilínea
@@ -39,7 +39,6 @@ const ListA = ({ data, width, height }) => {
         };
 
         fetchRoutes();
-
     }, [routeId]);
 
     const handleTogglePolyline = () => {
@@ -71,6 +70,7 @@ const ListA = ({ data, width, height }) => {
             <button onClick={handleTogglePolyline}>
                 {showPolyline ? 'Ocultar ruta' : 'Mostrar ruta'}
             </button>
+            <button onClick={onToggleMarker}>Toggle Marker</button>
         </div>
     );
 };
