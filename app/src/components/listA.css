@@ -1,0 +1,29 @@
+.additional-component {
+    overflow: auto; /* Para permitir el desplazamiento si el contenido es mayor que el tamaño del contenedor */
+    background-color: white;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.additional-component table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.additional-component th, .additional-component td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+.additional-component tr:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* 
+
+patente | ruta | Boton 
+
+*/

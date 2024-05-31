@@ -1,0 +1,18 @@
+/* mainMap.css */
+html, body, #root, .App, .App-header, .MainMap {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.MainMap {
+    flex-grow: 1;
+}
+
+.leaflet-container {
+    height: 100%;
+    width: 100%;
+}

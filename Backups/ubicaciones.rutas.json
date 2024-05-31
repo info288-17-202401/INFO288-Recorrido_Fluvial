@@ -1,0 +1,116 @@
+[{
+  "_id": {
+    "$oid": "665693a21f5219f6932b0cf5"
+  },
+  "name": "rutaA",
+  "locations": [
+    {
+      "latitude": -39.832,
+      "longitude": -73.26625
+    },
+    {
+      "latitude": -39.832056,
+      "longitude": -73.252806
+    },
+    {
+      "latitude": -39.821361,
+      "longitude": -73.250722
+    },
+    {
+      "latitude": -39.814916,
+      "longitude": -73.249028
+    },
+    {
+      "latitude": -39.814167,
+      "longitude": -73.2505
+    },
+    {
+      "latitude": -39.810972,
+      "longitude": -73.249028
+    },
+    {
+      "latitude": -39.809194,
+      "longitude": -73.242389
+    },
+    {
+      "latitude": -39.813805,
+      "longitude": -73.235389
+    }
+  ]
+},
+{
+  "_id": {
+    "$oid": "6657c717723845885b023965"
+  },
+  "locations": [
+    {
+      "latitude": -39.832056,
+      "longitude": -73.252806
+    },
+    {
+      "latitude": -39.821361,
+      "longitude": -73.250722
+    },
+    {
+      "latitude": -39.814916,
+      "longitude": -73.249028
+    },
+    {
+      "latitude": -39.814167,
+      "longitude": -73.2505
+    },
+    {
+      "latitude": -39.810972,
+      "longitude": -73.249028
+    },
+    {
+      "latitude": -39.809194,
+      "longitude": -73.242389
+    },
+    {
+      "latitude": -39.813805,
+      "longitude": -73.235389
+    }
+  ],
+  "name": "rutaB"
+},
+{
+  "_id": {
+    "$oid": "6657cd3a7a28a10011c0a727"
+  },
+  "name": "rutaC",
+  "locations": [
+    {
+      "latitude": -39.832056,
+      "longitude": -73.252806
+    },
+    {
+      "latitude": -39.821361,
+      "longitude": -73.250722
+    },
+    {
+      "latitude": -39.814916,
+      "longitude": -73.249028
+    },
+    {
+      "latitude": -39.814167,
+      "longitude": -73.2505
+    },
+    {
+      "latitude": -39.810972,
+      "longitude": -73.249028
+    },
+    {
+      "latitude": -39.809194,
+      "longitude": -73.242389
+    },
+    {
+      "latitude": -39.813805,
+      "longitude": -73.235389
+    },
+    {
+      "latitude": -39.809324,
+      "longitude": -73.20962
+    }
+  ]
+}]

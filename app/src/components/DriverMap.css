@@ -1,0 +1,19 @@
+/* Estilos del botón flotante */
+.floating-button {
+    position: absolute;
+    top: 20px; /* Ajusta la posición vertical según sea necesario */
+    right: 20px; /* Ajusta la posición horizontal según sea necesario */
+    z-index: 1000; /* Asegura que el botón esté por encima del mapa */
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .floating-button:hover {
+    background-color: #0056b3;
+  }
+  
