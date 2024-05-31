@@ -1,8 +1,8 @@
-// DriverMap.jsx
 import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import './DriverMap.css'; // Importa tu archivo CSS para estilos personalizados
 import ShipInput from './ShipInput';
 
 // Configuración del icono del marcador
@@ -17,10 +17,11 @@ L.Icon.Default.mergeOptions({
 const DriverMap = () => {
   const [position, setPosition] = useState(null);
   const [showForm, setShowForm] = useState(true);
+  const [follow, setFollow] = useState(true);
 
   useEffect(() => {
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
+    if (navigator.geolocation && follow) {
+      const watchId = navigator.geolocation.watchPosition(
         (position) => {
           setPosition([position.coords.latitude, position.coords.longitude]);
         },
@@ -28,14 +29,22 @@ const DriverMap = () => {
           console.error('Error obtaining location:', error);
         }
       );
-    } else {
-      console.error('Geolocation is not supported by this browser.');
+
+      return () => {
+        navigator.geolocation.clearWatch(watchId);
+      };
     }
-  }, []);
+  }, [follow]);
 
   const handleFormSubmit = (formData) => {
     console.log('Form data:', formData);
     setShowForm(false);
+  };
+
+  const handleToggleFollow = () => {
+    setFollow(false);
+    console.log("se detuvo")
+    //variable para seguir o no haciendo fetch post de tu ubicacion
   };
 
   return (
@@ -52,6 +61,8 @@ const DriverMap = () => {
             <Marker position={position}>
               <Popup>You are here</Popup>
             </Marker>
+            {/* Botón flotante */}
+            <button className="floating-button" onClick={handleToggleFollow}>Finalizar viaje</button>
           </MapContainer>
         ) : (
           <p>Loading map...</p>
@@ -62,4 +73,5 @@ const DriverMap = () => {
 };
 
 export default DriverMap;
+
 
