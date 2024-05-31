@@ -25,7 +25,8 @@ documento = {
     "eliminado": False,
     "updatedAt": datetime.now(),
     "deletedAt": None,
-    "status": "Activo"
+    "status": "Activo",
+    "nombreRuta": ""
 }
 
 def agregarTaxi(conductor, patente, longitud, latitud, velocidad):
@@ -102,10 +103,13 @@ def obtenerTaxis():
         print(f"Error al obtener documentos: {e}")
 
 def obtenerTaxisActivos():
+    listado = []
     try:
         result = taxis.find({"status": "Activo"})
         for taxi in result:
+            listado.append(taxi)
             print(taxi)
+        return listado
     except Exception as e:
         print(f"Error al obtener documentos: {e}")
 

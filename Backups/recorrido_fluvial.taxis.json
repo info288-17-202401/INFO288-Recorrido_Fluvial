@@ -1,0 +1,21 @@
+[{
+  "_id": {
+    "$oid": "66560c9f8356b626c7994fc0"
+  },
+  "conductor": "Juan Perez",
+  "ubicacion": {
+    "latitud": 19.432608,
+    "longitud": -99.133209
+  },
+  "velocidad": 60,
+  "patente": "ABC-1234",
+  "createdAt": {
+    "$date": "2024-05-28T12:55:59.737Z"
+  },
+  "eliminado": false,
+  "updatedAt": {
+    "$date": "2024-05-28T12:55:59.737Z"
+  },
+  "deletedAt": null,
+  "status": "Activo"
+}]
