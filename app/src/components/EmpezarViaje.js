@@ -4,6 +4,7 @@ import './EmpezarViaje.css';  // Importa el archivo CSS
 const EmpezarViaje = ({ onStart }) => {
     const [patente, setPatente] = useState('');
     const [ruta, setRuta] = useState('');
+    const [conductor, setConductor] = useState('');
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -21,6 +22,16 @@ const EmpezarViaje = ({ onStart }) => {
                             id="patente"
                             value={patente}
                             onChange={(e) => setPatente(e.target.value)}
+                            required
+                        />
+                    </div>
+                    <div className="form-group">
+                        <label htmlFor="conductor">Datos Conductor</label>
+                        <input
+                            type="text"
+                            id="conductor"
+                            value={conductor}
+                            onChange={(e) => setConductor(e.target.value)}
                             required
                         />
                     </div>
