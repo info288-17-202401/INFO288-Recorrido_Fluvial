@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
 
+import apiRoute from '../config/config';
+
 const redIcon = new L.Icon({
     iconUrl: 'https://raw.githubusercontent.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-red.png',
     iconSize: [25, 41],
@@ -18,7 +20,7 @@ const Tracker = ({ ships, showMarker }) => {
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            fetch(`http://127.0.0.1:5000/getTaxi?patente=ABC-1234`)
+            fetch(`${apiRoute}getTaxi?patente=ABC-1234`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');

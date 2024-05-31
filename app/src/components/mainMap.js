@@ -10,6 +10,8 @@ import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 import Tracker from './Tracker';
 
+import apiRoute from '../config/config';
+
 let DefaultIcon = L.icon({
     iconUrl: icon,
     shadowUrl: iconShadow
@@ -45,7 +47,7 @@ export const MainMap = () => {
                 setLocation([latitude, longitude]);
 
                 // Enviar la ubicación al backend
-                fetch('http://127.0.0.1:5000/location', {
+                fetch(`${apiRoute}location`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -73,7 +75,7 @@ export const MainMap = () => {
     useEffect(() => {
         const fetchPorts = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:5000/ports', {
+                const response = await fetch(`${apiRoute}ports`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'
@@ -96,7 +98,7 @@ export const MainMap = () => {
     useEffect(() => {
         const fetchPorts = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:5000/getActiveTaxis', {
+                const response = await fetch(`${apiRoute}getActiveTaxis`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json'

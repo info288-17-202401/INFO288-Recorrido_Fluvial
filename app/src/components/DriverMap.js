@@ -5,6 +5,8 @@ import 'leaflet/dist/leaflet.css';
 import './DriverMap.css'; // Importa tu archivo CSS para estilos personalizados
 import ShipInput from './ShipInput';
 
+import apiRoute from '../config/config';
+
 // Configuración del icono del marcador
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -24,7 +26,7 @@ const DriverMap = () => {
   const sendLocationToBackend = async (latitude, longitude) => {
     const patente = pat; // Reemplaza esto con el valor correcto si es dinámico
     try {
-      const response = await fetch('http://127.0.0.1:5000/updateLocation', {
+      const response = await fetch(`${apiRoute}updateLocation`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

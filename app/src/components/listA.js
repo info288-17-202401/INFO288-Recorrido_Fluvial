@@ -2,15 +2,17 @@ import React, { useState, useEffect } from 'react';
 import './listA.css';
 import ShowRoutes from './showRoutes';
 
+import apiRoute from '../config/config';
+
 const ListA = ({ data, width, height, onToggleMarker }) => {
     const [routeId, setRouteId] = useState(null);
     const [routes, setRoutes] = useState([]);
     const [showPolyline, setShowPolyline] = useState(true); // Estado para controlar la visibilidad de la polilínea
 
     const consults = [
-        'http://127.0.0.1:5000/route/rutaA',
-        'http://127.0.0.1:5000/route/rutaB',
-        'http://127.0.0.1:5000/route/rutaC'
+        `${apiRoute}route/rutaA`,
+        `${apiRoute}route/rutaB`,
+        `${apiRoute}route/rutaC`
     ];
 
     const handleClick = (item, index) => {
