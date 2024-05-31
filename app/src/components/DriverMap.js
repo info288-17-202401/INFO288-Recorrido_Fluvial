@@ -45,7 +45,42 @@ const DriverMap = () => {
 
   useEffect(() => {
     let intervalId;
-    if (navigator.geolocation && follow) {
+    if (navigator.geolocation && true) {
+      const watchId = navigator.geolocation.watchPosition(
+        (position) => {
+          const { latitude, longitude } = position.coords;
+          setPosition([latitude, longitude]);
+          sendLocationToBackend(latitude, longitude);
+        },
+        (error) => {
+          console.error('Error obtaining location:', error);
+        }
+      );
+
+      // Intervalo de 5000 milisegundos (5 segundos)
+      intervalId = setInterval(() => {
+        const watchId = navigator.geolocation.watchPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            setPosition([latitude, longitude]);
+            sendLocationToBackend(latitude, longitude);
+          },
+          (error) => {
+            console.error('Error obtaining location:', error);
+          }
+        );
+      }, 5000);
+
+      return () => {
+        navigator.geolocation.clearWatch(watchId);
+        clearInterval(intervalId);
+      };
+    }
+  }, [follow]);
+
+/*  useEffect(() => {
+    let intervalId;
+    if (navigator.geolocation && true) {
       const watchId = navigator.geolocation.watchPosition(
         (position) => {
           const { latitude, longitude } = position.coords;
@@ -58,6 +93,15 @@ const DriverMap = () => {
 
       // Intervalo de 8000 milisegundos (8 segundos)
       intervalId = setInterval(() => {
+        const watchId = navigator.geolocation.watchPosition(
+          (position) => {
+            const { latitude, longitude } = position.coords;
+            setPosition([latitude, longitude]);
+          },
+          (error) => {
+            console.error('Error obtaining location:', error);
+          }
+        );
         if (position) {
           const [latitude, longitude] = position;
           console.log("ubi: ")
@@ -65,14 +109,14 @@ const DriverMap = () => {
           console.log(longitude)
           sendLocationToBackend(latitude, longitude);
         }
-      }, 8000);
+      }, 3000);
 
       return () => {
         navigator.geolocation.clearWatch(watchId);
         clearInterval(intervalId);
       };
     }
-  }, [follow, position]);
+  }, [follow, position]);*/
 
   const handleFormSubmit = (formData) => {
     console.log('Form data:', formData);
