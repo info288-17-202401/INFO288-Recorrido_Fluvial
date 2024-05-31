@@ -32,6 +32,7 @@ export const MainMap = () => {
     const [ports, setPorts] = useState([]);
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [showMarker, setShowMarker] = useState(true);
+    const [ships, setShips] = useState([])
 
     useEffect(() => {
         // Obtener ubicación actual
@@ -89,6 +90,32 @@ export const MainMap = () => {
         fetchPorts(); // Llama a la función fetchPorts para ejecutarla
 
     }, []); // Asegúrate de dejar el array de dependencias vacío para que se ejecute solo una vez
+
+    useEffect(() => {
+        const fetchPorts = async () => {
+            try {
+                const response = await fetch('http://127.0.0.1:5000/getActiveTaxis', {
+                    method: 'GET',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                const activeTaxis = await response.json();
+                setShips(activeTaxis);
+            } catch (error) {
+                console.error('Error fetching ports:', error);
+            }
+        };
+
+        fetchPorts(); // Llama a la función fetchPorts para ejecutarla
+
+    }, []); // Asegúrate de dejar el array de dependencias vacío para que se ejecute solo una vez
+
+    console.log("taxis activos:")
+    console.log(ships)
 
     // Icono personalizado para el marcador amarillo
     const yellowIcon = L.icon({
@@ -148,7 +175,7 @@ export const MainMap = () => {
                 </MapContainer>
             ) : (
                 <p>Getting location...</p>
-            )}            
+            )}  
         </div>
     );
 };

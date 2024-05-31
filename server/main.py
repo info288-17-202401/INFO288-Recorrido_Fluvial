@@ -34,15 +34,12 @@ def location():
 
 @app.route('/ports', methods=['GET'])
 def get_ports():
-    print("asdas")
     ports = list(ports_collection.find())
     print(ports)
     return JSONEncoder().encode(ports)
 
 @app.route('/route/<route_name>', methods=['GET'])
 def get_route(route_name):
-    print("\n llego consulta! rutas \n")
-    print(route_name)
     route = routes_collection.find_one({"name": route_name}, {"_id": 0, "locations": 1})
     print(route)
     if route and 'locations' in route:
@@ -64,6 +61,8 @@ def get_taxi():
 @app.route('/getActiveTaxis', methods=['GET'])
 def get_active_taxis():
     taxis = obtenerTaxisActivos()
+    print("taxis:")
+    print(taxis)
     if not taxis:
         return jsonify(status="null", data=None)
     else:
@@ -71,7 +70,9 @@ def get_active_taxis():
 
 @app.route('/activateTaxi', methods=['POST'])
 def activate_taxi():
+    print("entro!!!!")
     data = request.json
+    print(data)
     activarTaxi(data['patente'], data["nombreRuta"])
     print(data)
     return jsonify(status="success", data=data)
