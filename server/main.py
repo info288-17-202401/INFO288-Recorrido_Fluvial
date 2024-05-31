@@ -67,7 +67,9 @@ def get_active_taxis():
     if not taxis:
         return jsonify(status="null", data=None)
     else:
-        return json.dumps(taxis, default=json_util.default)
+        print("Logro imprimir taxis")
+        print(list(taxis))
+        return json.dumps(list(taxis), default=json_util.default)
 
 @app.route('/activateTaxi', methods=['POST'])
 def activate_taxi():
