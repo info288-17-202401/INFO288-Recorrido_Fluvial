@@ -8,6 +8,7 @@ import ShipList from './shipList';
 // Corrige el problema con los íconos predeterminados de Leaflet
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
+import Tracker from './Tracker';
 
 let DefaultIcon = L.icon({
     iconUrl: icon,
@@ -32,6 +33,7 @@ export const MainMap = () => {
     const [ports, setPorts] = useState([]);
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [showMarker, setShowMarker] = useState(true);
+    const [selected, SetSelected] = useState()
     const [ships, setShips] = useState([])
 
     useEffect(() => {
@@ -115,7 +117,7 @@ export const MainMap = () => {
     }, []); // Asegúrate de dejar el array de dependencias vacío para que se ejecute solo una vez
 
     console.log("taxis activos:")
-    console.log(ships)
+    console.log(ships) //
 
     // Icono personalizado para el marcador amarillo
     const yellowIcon = L.icon({
@@ -131,6 +133,7 @@ export const MainMap = () => {
  
     const handleToggleMarker = () => {
         setShowMarker(!showMarker);
+        console.log(showMarker);
     };
    
     return (
@@ -141,11 +144,12 @@ export const MainMap = () => {
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     />
+                    {/**
                     <Marker position={location}>
                         <Popup>
                             You are here.
                         </Popup>
-                    </Marker>
+                    </Marker>  */}
                     {ports.map((port, index) => (
                         <Marker key={index} position={[port.latitude, port.longitude]}>
                             <Popup>
@@ -159,14 +163,9 @@ export const MainMap = () => {
                         </Marker>
                     ))}
                     {selectedIndex !== null && showMarker && (
-                        <Marker
-                            position={[portsLatitude[selectedIndex], portsLongitude[selectedIndex]]}
-                            icon={yellowIcon}
-                        >
-                            <Popup>
-                                Punto seleccionado: {selectedIndex}
-                            </Popup>
-                        </Marker>
+
+                        <Tracker ships = {ships[selectedIndex]} showMarker = {showMarker}/>
+                                                
                     )}
                 </MapContainer>
             ) : (

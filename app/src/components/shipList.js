@@ -4,6 +4,7 @@ import './shipList.css'; // testing
 const ShipList = ({ ships, onSelect }) => {
   const handleClick = (index) => {
     onSelect(index);
+    console.log(index);
   };
 
   return (
