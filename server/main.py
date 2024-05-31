@@ -116,7 +116,7 @@ def get_routes1():
     if not rutas:
         return jsonify(status="null", data=None)
     else:
-        return json.dumps(rutas, default=json_util.default)
+        return json.dumps(list(rutas), default=json_util.default)
     
 
 if __name__ == '__main__':

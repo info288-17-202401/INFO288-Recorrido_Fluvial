@@ -89,9 +89,12 @@ def eliminarRuta(nombre):
 
 def obtenerRutas():
     try:
+        listado = []
         result = rutas.find()
         for ruta in result:
+            listado.append(ruta)
             print(ruta)
+        return listado
     except Exception as e:
         print(f"Error al obtener documentos: {e}")
 
