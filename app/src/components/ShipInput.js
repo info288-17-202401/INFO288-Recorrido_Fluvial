@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ShipInput.css';
 
-const ShipInput = ({ onSubmit }) => {
+const ShipInput = ({ onSubmit, setFollow }) => {
   const [formData, setFormData] = useState({
     patente: '',
     nombreRuta: 'rutaA' // Valor inicial para la lista desplegable
@@ -17,9 +17,9 @@ const ShipInput = ({ onSubmit }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("testingLeoxs")
+    console.log("testingLeoxs");
     console.log(formData);
-
+    setFollow(true); // Asegúrate de que setFollow esté definido
     onSubmit(formData);
 
     try {
@@ -73,5 +73,6 @@ const ShipInput = ({ onSubmit }) => {
 };
 
 export default ShipInput;
+
 
 

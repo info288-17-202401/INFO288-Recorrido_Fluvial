@@ -128,11 +128,11 @@ export const MainMap = () => {
         console.log('Selected index:', index);
         setSelectedIndex(index);
     };
-
+ 
     const handleToggleMarker = () => {
         setShowMarker(!showMarker);
     };
-
+   
     return (
         <div className="MainMap">
             {location ? (

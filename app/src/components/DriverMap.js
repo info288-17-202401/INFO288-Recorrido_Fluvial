@@ -19,22 +19,59 @@ const DriverMap = () => {
   const [showForm, setShowForm] = useState(true);
   const [follow, setFollow] = useState(true);
 
+  // Función para enviar la ubicación al backend
+  const sendLocationToBackend = async (latitude, longitude) => {
+    const patente = "ABC123"; // Reemplaza esto con el valor correcto si es dinámico
+    try {
+      const response = await fetch('http://127.0.0.1:5000/updateLocation', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          patente,
+          latitud: latitude,
+          longitud: longitude,
+        }),
+      });
+
+      const data = await response.json();
+      console.log('Backend response:', data);
+    } catch (error) {
+      console.error('Error sending location to backend:', error);
+    }
+  };
+
   useEffect(() => {
+    let intervalId;
     if (navigator.geolocation && follow) {
       const watchId = navigator.geolocation.watchPosition(
         (position) => {
-          setPosition([position.coords.latitude, position.coords.longitude]);
+          const { latitude, longitude } = position.coords;
+          setPosition([latitude, longitude]);
         },
         (error) => {
           console.error('Error obtaining location:', error);
         }
       );
 
+      // Intervalo de 8000 milisegundos (8 segundos)
+      intervalId = setInterval(() => {
+        if (position) {
+          const [latitude, longitude] = position;
+          console.log("ubi: ")
+          console.log(latitude)
+          console.log(longitude)
+          sendLocationToBackend(latitude, longitude);
+        }
+      }, 8000);
+
       return () => {
         navigator.geolocation.clearWatch(watchId);
+        clearInterval(intervalId);
       };
     }
-  }, [follow]);
+  }, [follow, position]);
 
   const handleFormSubmit = (formData) => {
     console.log('Form data:', formData);
@@ -43,14 +80,14 @@ const DriverMap = () => {
 
   const handleToggleFollow = () => {
     setFollow(false);
-    console.log("se detuvo")
-    //variable para seguir o no haciendo fetch post de tu ubicacion
+    console.log("se detuvo");
+    //variable para seguir o no haciendo fetch post de tu ubicación
   };
 
   return (
     <div>
       {showForm ? (
-        <ShipInput onSubmit={handleFormSubmit} />
+        <ShipInput onSubmit={handleFormSubmit} setFollow={setFollow} />
       ) : (
         position ? (
           <MapContainer center={position} zoom={13} style={{ height: "100vh", width: "100%" }}>
@@ -73,5 +110,8 @@ const DriverMap = () => {
 };
 
 export default DriverMap;
+
+
+
 
 

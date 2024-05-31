@@ -1,5 +1,5 @@
 import React from 'react';
-import './shipList.css'; // Importa el archivo CSS para estilos
+import './shipList.css'; // testing
 
 const ShipList = ({ ships, onSelect }) => {
   const handleClick = (index) => {

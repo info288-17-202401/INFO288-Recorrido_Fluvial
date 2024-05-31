@@ -89,7 +89,9 @@ def deactivate_taxi():
 #Actualizar ubicacion
 @app.route('/updateLocation', methods=['POST'])
 def update_location():
+    print("entro a update")
     data = request.json
+    print(data)
     actualizarTaxiPos(data['patente'], data['longitud'], data['latitud'])
     print(data)
     return jsonify(status="success", data=data)
