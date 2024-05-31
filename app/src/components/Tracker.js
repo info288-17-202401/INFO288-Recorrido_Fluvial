@@ -18,7 +18,7 @@ const Tracker = ({ ships, showMarker }) => {
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            fetch(`http://127.0.0.1:5000/getTaxi?patente=${"ABC-1234"}`)
+            fetch(`http://127.0.0.1:5000/getTaxi?patente=ABC-1234`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
@@ -27,8 +27,7 @@ const Tracker = ({ ships, showMarker }) => {
                 })
                 .then(data => {
                     setPosition([data.ubicacion.latitud, data.ubicacion.longitud]);
-                    console.log("return:");
-                    console.log(position);
+                    
                 })
                 .catch(error => {
                     console.error('Error fetching taxi location:', error);
@@ -42,6 +41,10 @@ const Tracker = ({ ships, showMarker }) => {
     if (error) {
         return <p>Error: {error.message}</p>;
     }
+
+    console.log("return:");
+    console.log(position);
+
 
     return (
         <>

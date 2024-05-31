@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ShipInput.css';
 
-const ShipInput = ({ onSubmit, setFollow }) => {
+const ShipInput = ({ onSubmit, setFollow,setPat }) => {
   const [formData, setFormData] = useState({
     patente: '',
     nombreRuta: 'rutaA' // Valor inicial para la lista desplegable
@@ -21,6 +21,7 @@ const ShipInput = ({ onSubmit, setFollow }) => {
     console.log(formData);
     setFollow(true); // Asegúrate de que setFollow esté definido
     onSubmit(formData);
+    setPat(formData.patente);
 
     try {
       const response = await fetch('http://127.0.0.1:5000/activateTaxi', {

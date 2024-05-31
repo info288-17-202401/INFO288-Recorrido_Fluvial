@@ -18,10 +18,11 @@ const DriverMap = () => {
   const [position, setPosition] = useState(null);
   const [showForm, setShowForm] = useState(true);
   const [follow, setFollow] = useState(true);
+  const [pat,setPat] = useState()
 
   // Función para enviar la ubicación al backend
   const sendLocationToBackend = async (latitude, longitude) => {
-    const patente = "ABC123"; // Reemplaza esto con el valor correcto si es dinámico
+    const patente = pat; // Reemplaza esto con el valor correcto si es dinámico
     try {
       const response = await fetch('http://127.0.0.1:5000/updateLocation', {
         method: 'POST',
@@ -87,7 +88,7 @@ const DriverMap = () => {
   return (
     <div>
       {showForm ? (
-        <ShipInput onSubmit={handleFormSubmit} setFollow={setFollow} />
+        <ShipInput onSubmit={handleFormSubmit} setFollow={setFollow} setPat = {setPat} />
       ) : (
         position ? (
           <MapContainer center={position} zoom={13} style={{ height: "100vh", width: "100%" }}>
