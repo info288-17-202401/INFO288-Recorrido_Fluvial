@@ -56,7 +56,10 @@ def get_taxi():
     taxi = obtenerTaxi(patente)
     print("SOY ALGO MAS QUE UN TAXI")
     print(taxi)
-    return json.dumps(taxi, default=json_util.default)
+    if not taxi:
+        return jsonify(status="null", data=None)
+    else:
+        return json.dumps(taxi, default=json_util.default)
 
 @app.route('/getActiveTaxis', methods=['GET'])
 def get_active_taxis():
