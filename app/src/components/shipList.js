@@ -21,9 +21,9 @@ const ShipList = ({ ships, onSelect }) => {
           {ships.map((ship, index) => (
             <tr key={index}>
               <td>{ship.patente}</td>
-              <td>{ship.ruta}</td>
+              <td>{ship.nombreRuta}</td>
               <td>
-                <button onClick={() => handleClick(index)}>Imprimir Ruta</button>
+                <button onClick={() => handleClick(index)}>Seguir</button>
               </td>
             </tr>
           ))}

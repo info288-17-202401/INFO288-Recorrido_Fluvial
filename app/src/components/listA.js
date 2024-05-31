@@ -70,7 +70,7 @@ const ListA = ({ data, width, height, onToggleMarker }) => {
             <button onClick={handleTogglePolyline}>
                 {showPolyline ? 'Ocultar ruta' : 'Mostrar ruta'}
             </button>
-            <button onClick={onToggleMarker}>Toggle Marker</button>
+            <button onClick={onToggleMarker}>Toggle follow</button>
         </div>
     );
 };

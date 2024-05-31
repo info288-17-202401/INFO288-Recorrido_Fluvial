@@ -152,11 +152,7 @@ export const MainMap = () => {
                                 
                                 <ListA data={tableData} width="300px" height="200px" onToggleMarker={handleToggleMarker} />
                                 <ShipList
-                ships={[
-                    { patente: 'ABC123', ruta: 'rutaA' },
-                    { patente: 'DEF456', ruta: 'rutaB' },
-                    { patente: 'GHI789', ruta: 'rutaC' },
-                ]}
+                ships={ships}
                 onSelect={handleSelect}
             />
                             </Popup>
