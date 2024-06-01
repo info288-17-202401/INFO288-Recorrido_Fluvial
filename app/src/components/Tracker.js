@@ -35,7 +35,7 @@ const Tracker = ({ ships, showMarker }) => {
                     console.error('Error fetching taxi location:', error);
                     setError(error);
                 });
-        }, 15000);
+        }, 5000);
 
         return () => clearInterval(intervalId);
     }, [ships]);

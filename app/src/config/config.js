@@ -1,4 +1,4 @@
-const apiRoute = 'http://192.168.1.5:5000/';
+const apiRoute = 'http://127.0.0.1:5000/';
 
 console.log("apiRoute: ", apiRoute)
 

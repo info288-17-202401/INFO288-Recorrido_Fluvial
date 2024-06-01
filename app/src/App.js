@@ -5,6 +5,7 @@ import UserView from './UserView';
 import DriverView from './DriverView';
 import 'leaflet/dist/leaflet.css';
 import './App.css';
+import DriverViewSim from './DriverViewSim';
 
 function App() {
     const mapWidth = "100vw" // Cambia este valor según el ancho deseado del mapa
@@ -16,6 +17,7 @@ function App() {
                     <Routes>
                         <Route path="/user" element={<UserView mapWidth={mapWidth} mapHeight={mapHeight} />} />
                         <Route path="/driver" element={<DriverView mapWidth={mapWidth} mapHeight={mapHeight} />} />
+                        <Route path="/driverSim" element={<DriverViewSim mapWidth={mapWidth} mapHeight={mapHeight} />} />
                     </Routes>
             </div>
         </Router>
