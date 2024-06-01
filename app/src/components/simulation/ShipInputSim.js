@@ -42,7 +42,7 @@ const ShipInputSim = ({ onSubmit, setFollow,setPat }) => {
   return (
     <div className="ship-input-container">
       <form className="ship-input-form" onSubmit={handleSubmit}>
-        <h2>Enter Shipping Details</h2>
+        <h2>Iniciar viaje</h2>
         <div className="form-group">
           <label htmlFor="patente">Patente:</label>
           <input
@@ -68,7 +68,7 @@ const ShipInputSim = ({ onSubmit, setFollow,setPat }) => {
             <option value="rutaC">rutaC</option>
           </select>
         </div>
-        <button type="submit">Submit</button>
+        <button type="submit">Ok</button>
       </form>
     </div>
   );

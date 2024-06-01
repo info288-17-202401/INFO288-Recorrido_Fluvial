@@ -125,11 +125,44 @@ const DriverMap = () => {
     setShowForm(false);
   };
 
+  /** 
   const handleToggleFollow = () => {
     setFollow(false);
     console.log("se detuvo");
+
     //variable para seguir o no haciendo fetch post de tu ubicación
   };
+  */
+
+  const handleToggleFollow = () => {
+    setFollow(false);
+    
+
+    // Enviar la variable "pat" al backend
+    fetch(`${apiRoute}deactivateTaxi`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ patente: pat })
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Success:', data);
+        // Redireccionar a /driverSim
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+  };
+
+
 
   return (
     <div>

@@ -4,6 +4,7 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import './DriverMapSim.css'; // Importa tu archivo CSS para estilos personalizados
 import ShipInput from './ShipInputSim';
+ 
 
 import apiRoute from '../../config/config';
 
@@ -21,6 +22,7 @@ const DriverMap = () => {
   const [showForm, setShowForm] = useState(true);
   const [follow, setFollow] = useState(true);
   const [pat, setPat] = useState();
+  
 
   // Función para enviar la ubicación al backend
   const sendLocationToBackend = async (latitude, longitude) => {
@@ -72,7 +74,29 @@ const DriverMap = () => {
   const handleToggleFollow = () => {
     setFollow(false);
     console.log("se detuvo");
-    //variable para seguir o no haciendo fetch post de tu ubicación
+
+    // Enviar la variable "pat" al backend
+    fetch(`${apiRoute}deactivateTaxi`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ patente: pat })
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log('Success:', data);
+        // Redireccionar a /driverSim
+        window.location.reload();
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
   };
 
   const handleMarkerDragEnd = (event) => {
@@ -115,3 +139,6 @@ const DriverMap = () => {
 };
 
 export default DriverMap;
+
+
+

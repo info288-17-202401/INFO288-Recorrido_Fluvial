@@ -19,24 +19,22 @@ let DefaultIcon = L.icon({
 
 L.Marker.prototype.options.icon = DefaultIcon;
 
-const portsLatitude = [-39.812100,-39.824729 ,-39.832165];  // los puntos deben ir en orden para mostrar la ruta 
-const portsLongitude = [-73.247879,-73.254681 ,-73.252607]; // correctamente, si no hacen clipeo
-const tableData = ["rutaA","rutaB","rutaC"]; // Datos para la tabla
+const portsLatitude = [-39.812100, -39.824729, -39.832165];  // los puntos deben ir en orden para mostrar la ruta 
+const portsLongitude = [-73.247879, -73.254681, -73.252607]; // correctamente, si no hacen clipeo
+const tableData = ["rutaA", "rutaB", "rutaC"]; // Datos para la tabla
 
-const ships = [
-    { patente: 'ABC123', ruta: 'Ruta A' },
-    { patente: 'XYZ456', ruta: 'Ruta B' },
-    { patente: 'DEF789', ruta: 'Ruta C' }
-  ];
-//
+const initialShips = [
+    { patente: 'no disp', ruta: 'no disp' }
+];
+
 export const MainMap = () => {
     const [location, setLocation] = useState(null);
     const [status, setStatus] = useState('');
     const [ports, setPorts] = useState([]);
     const [selectedIndex, setSelectedIndex] = useState(null);
     const [showMarker, setShowMarker] = useState(true);
-    const [selected, SetSelected] = useState()
-    const [ships, setShips] = useState([])
+    const [selected, SetSelected] = useState();
+    const [ships, setShips] = useState([]); // Inicializar como array vacío
 
     useEffect(() => {
         // Obtener ubicación actual
@@ -96,7 +94,7 @@ export const MainMap = () => {
     }, []); // Asegúrate de dejar el array de dependencias vacío para que se ejecute solo una vez
 
     useEffect(() => {
-        const fetchPorts = async () => {
+        const fetchShips = async () => {
             try {
                 const response = await fetch(`${apiRoute}getActiveTaxis`, {
                     method: 'GET',
@@ -108,18 +106,18 @@ export const MainMap = () => {
                     throw new Error('Network response was not ok');
                 }
                 const activeTaxis = await response.json();
-                setShips(activeTaxis);
+                setShips(activeTaxis.length ? activeTaxis : initialShips); // Asignar valor predeterminado si no hay taxis activos
             } catch (error) {
-                console.error('Error fetching ports:', error);
+                console.error('Error fetching active taxis:', error);
+                setShips(initialShips); // Asignar valor predeterminado en caso de error
             }
         };
 
-        fetchPorts(); // Llama a la función fetchPorts para ejecutarla
+        fetchShips(); // Llama a la función fetchShips para ejecutarla
 
     }, []); // Asegúrate de dejar el array de dependencias vacío para que se ejecute solo una vez
 
-    console.log("taxis activos:")
-    console.log(ships) //
+    console.log("Taxis activos:", ships); // Log de taxis activos
 
     // Icono personalizado para el marcador amarillo
     const yellowIcon = L.icon({
@@ -132,12 +130,12 @@ export const MainMap = () => {
         console.log('Selected index:', index);
         setSelectedIndex(index);
     };
- 
+
     const handleToggleMarker = () => {
         setShowMarker(!showMarker);
         console.log(showMarker);
     };
-   
+
     return (
         <div className="MainMap">
             {location ? (
@@ -146,34 +144,26 @@ export const MainMap = () => {
                         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     />
-                    {/**
-                    <Marker position={location}>
-                        <Popup>
-                            You are here.
-                        </Popup>
-                    </Marker>  */}
                     {ports.map((port, index) => (
                         <Marker key={index} position={[port.latitude, port.longitude]}>
                             <Popup>
-                                
                                 <ListA data={tableData} width="300px" height="200px" onToggleMarker={handleToggleMarker} />
                                 <ShipList
-                ships={ships}
-                onSelect={handleSelect}
-            />
+                                    ships={ships}
+                                    onSelect={handleSelect}
+                                />
                             </Popup>
                         </Marker>
                     ))}
                     {selectedIndex !== null && showMarker && (
-
-                        <Tracker ships = {ships[selectedIndex]} showMarker = {showMarker}/>
-                                                
+                        <Tracker ships={ships[selectedIndex]} showMarker={showMarker} />
                     )}
                 </MapContainer>
             ) : (
                 <p>Getting location...</p>
-            )}  
+            )}
         </div>
     );
 };
+
 

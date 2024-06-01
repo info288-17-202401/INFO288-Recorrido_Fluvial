@@ -5,6 +5,7 @@ const ShipList = ({ ships, onSelect }) => {
   const handleClick = (index) => {
     onSelect(index);
     console.log(index);
+    console.log(ships);
   };
 
   return (
@@ -24,7 +25,9 @@ const ShipList = ({ ships, onSelect }) => {
               <td>{ship.patente}</td>
               <td>{ship.nombreRuta}</td>
               <td>
-                <button onClick={() => handleClick(index)}>Seguir</button>
+                {ship.patente !== 'no disp' && ship.ruta !== 'no disp' && (
+                  <button onClick={() => handleClick(index)}>Seguir</button>
+                )}
               </td>
             </tr>
           ))}
@@ -35,4 +38,6 @@ const ShipList = ({ ships, onSelect }) => {
 };
 
 export default ShipList;
+
+
 
