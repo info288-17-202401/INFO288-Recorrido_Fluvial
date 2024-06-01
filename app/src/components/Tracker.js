@@ -20,7 +20,7 @@ const Tracker = ({ ships, showMarker }) => {
 
     useEffect(() => {
         const intervalId = setInterval(() => {
-            fetch(`${apiRoute}getTaxi?patente=ABC-1234`)
+            fetch(`${apiRoute}getTaxi?patente=${ships.patente}`)
                 .then(response => {
                     if (!response.ok) {
                         throw new Error('Network response was not ok');
