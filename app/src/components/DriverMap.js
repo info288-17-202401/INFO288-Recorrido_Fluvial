@@ -80,59 +80,10 @@ const DriverMap = () => {
     }
   }, [follow]);
 
-/*  useEffect(() => {
-    let intervalId;
-    if (navigator.geolocation && true) {
-      const watchId = navigator.geolocation.watchPosition(
-        (position) => {
-          const { latitude, longitude } = position.coords;
-          setPosition([latitude, longitude]);
-        },
-        (error) => {
-          console.error('Error obtaining location:', error);
-        }
-      );
-
-      // Intervalo de 8000 milisegundos (8 segundos)
-      intervalId = setInterval(() => {
-        const watchId = navigator.geolocation.watchPosition(
-          (position) => {
-            const { latitude, longitude } = position.coords;
-            setPosition([latitude, longitude]);
-          },
-          (error) => {
-            console.error('Error obtaining location:', error);
-          }
-        );
-        if (position) {
-          const [latitude, longitude] = position;
-          console.log("ubi: ")
-          console.log(latitude)
-          console.log(longitude)
-          sendLocationToBackend(latitude, longitude);
-        }
-      }, 3000);
-
-      return () => {
-        navigator.geolocation.clearWatch(watchId);
-        clearInterval(intervalId);
-      };
-    }
-  }, [follow, position]);*/
-
   const handleFormSubmit = (formData) => {
     console.log('Form data:', formData);
     setShowForm(false);
   };
-
-  /** 
-  const handleToggleFollow = () => {
-    setFollow(false);
-    console.log("se detuvo");
-
-    //variable para seguir o no haciendo fetch post de tu ubicación
-  };
-  */
 
   const handleToggleFollow = () => {
     setFollow(false);

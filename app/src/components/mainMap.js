@@ -18,9 +18,6 @@ let DefaultIcon = L.icon({
 });
 
 L.Marker.prototype.options.icon = DefaultIcon;
-
-const portsLatitude = [-39.812100, -39.824729, -39.832165];  // los puntos deben ir en orden para mostrar la ruta 
-const portsLongitude = [-73.247879, -73.254681, -73.252607]; // correctamente, si no hacen clipeo
 const tableData = ["rutaA", "rutaB", "rutaC"]; // Datos para la tabla
 
 const initialShips = [
