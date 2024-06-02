@@ -1,11 +1,15 @@
 from pymongo import MongoClient, GEOSPHERE
 from datetime import datetime
 
-# Conexión a MongoDB (ajusta la URL según tu configuración)
-client = MongoClient("mongodb://localhost:27017/")
+from dotenv import load_dotenv
+import os
+load_dotenv()
+
+client = MongoClient(os.getenv('MONGO_URI'))
+db = client[os.getenv('MONGO_DB')]
 
 # Selecciona la base de datos
-db = client.recorrido_fluvial
+#db = client.recorrido_fluvial
 
 # Selecciona la colección
 puertos = db.puertos
@@ -36,7 +40,7 @@ paradas_list = [
     }
 ]
 
-puertos.insert_many(paradas_list)
+#puertos.insert_many(paradas_list)
 
 def agregarParada(longitud, latitud):
     documento = {

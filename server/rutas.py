@@ -1,11 +1,11 @@
 from pymongo import MongoClient, GEOSPHERE
 from datetime import datetime
+from dotenv import load_dotenv
+import os
+load_dotenv()
 
-# Conexión a MongoDB (ajusta la URL según tu configuración)
-client = MongoClient("mongodb://localhost:27017/")
-
-# Selecciona la base de datos
-db = client.recorrido_fluvial
+client = MongoClient(os.getenv('MONGO_URI'))
+db = client[os.getenv('MONGO_DB')]
 
 # Selecciona la colección
 rutas = db.rutas
