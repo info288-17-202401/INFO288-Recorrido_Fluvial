@@ -26,9 +26,9 @@ routes_collection = db['rutas']
 
 # Leer el archivo
 
-file_path = r'C:\Users\leonardo\Desktop\s1 2024\Distribuidos\pj\INFO288-Recorrido_Fluvial\server\demo\rutaA.txt'
+file_path = r'C:\Users\leonardo\Desktop\s1 2024\Distribuidos\pj\INFO288-Recorrido_Fluvial\server\demo\rutaC.txt'
 # Cambiar archivo para ver diferetes taxis y la patente
-patente = "ABC-1234"
+patente = "ABC-5678"
 # Listas para almacenar las latitudes y longitudes
 latitudes = []
 longitudes = []

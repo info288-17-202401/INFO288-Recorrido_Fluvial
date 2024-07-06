@@ -47,7 +47,7 @@ def get_ports():
 @app.route('/route/<route_name>', methods=['GET'])
 def get_route(route_name):
     route = routes_collection.find_one({"name": route_name}, {"_id": 0, "locations": 1})
-    #print(route)
+    print(route)
     if route and 'locations' in route:
         return JSONEncoder().encode(route['locations'])
     else:
