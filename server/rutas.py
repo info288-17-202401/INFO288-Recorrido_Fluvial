@@ -51,7 +51,7 @@ rutas.insert_many(recorridos)
 def agregarRuta(nombre, descripcion, distancia, estimado, puntos):
     puntos_separados = [{"longitude": punto["longitud"], "latitude":punto["latitud"]} for punto in puntos]
     documento = {
-        "Nombre": nombre,
+        "name": nombre,
         "descripcion": descripcion,
         "locations": puntos_separados,
         "createdAt": datetime.now(),
