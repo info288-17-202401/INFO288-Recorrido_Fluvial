@@ -17,6 +17,16 @@ let DefaultIcon = L.icon({
     shadowUrl: iconShadow
 });
 
+// Creación del icono personalizado
+const customIcon = L.icon({
+    iconUrl: 'https://img.icons8.com/stickers/100/anchor.png', // URL de tu icono
+    iconSize: [48, 48], // Tamaño del icono
+    iconAnchor: [24, 48], // Punto de anclaje del icono (centrado en la parte inferior)
+    popupAnchor: [0, -48], // Punto donde el popup se ancla en relación con el icono
+  });
+
+
+
 L.Marker.prototype.options.icon = DefaultIcon;
 const tableData = ["rutaA", "rutaB", "rutaC"]; // Datos para la tabla
 
@@ -142,7 +152,7 @@ export const MainMap = () => {
                         attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                     />
                     {ports.map((port, index) => (
-                        <Marker key={index} position={[port.latitude, port.longitude]}>
+                        <Marker key={index} position={[port.latitude, port.longitude]} icon={customIcon} >
                             <Popup>
                                 <ListA data={tableData} width="300px" height="200px" onToggleMarker={handleToggleMarker} />
                                 <ShipList

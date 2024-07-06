@@ -12,6 +12,14 @@ const redIcon = new L.Icon({
     shadowSize: [41, 41]
 });
 
+
+const taxIcon = L.icon({
+    iconUrl: 'https://img.icons8.com/material/24/small-fishing-boat.png', // URL de tu icono
+    iconSize: [48, 48], // Tamaño del icono
+    iconAnchor: [24, 48], // Punto de anclaje del icono (centrado en la parte inferior)
+    popupAnchor: [0, -48], // Punto donde el popup se ancla en relación con el icono
+  });
+
 const Tracker = ({ ships, showMarker }) => {
     const [position, setPosition] = useState(null);
     const [error, setError] = useState(null);
@@ -35,7 +43,7 @@ const Tracker = ({ ships, showMarker }) => {
                     console.error('Error fetching taxi location:', error);
                     setError(error);
                 });
-        }, 5000);
+        }, 500);
 
         return () => clearInterval(intervalId);
     }, [ships]);
@@ -51,7 +59,7 @@ const Tracker = ({ ships, showMarker }) => {
     return (
         <>
             {showMarker && position && (
-                <Marker position={position} icon={redIcon}>
+                <Marker position={position} icon={taxIcon}>
                     <Popup>
                         Taxi Marker
                     </Popup>
