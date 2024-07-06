@@ -2,7 +2,6 @@
   "_id": {
     "$oid": "6689bd8d410d3453ac785895"
   },
-  "Nombre": "rutaA",
   "descripcion": "Ruta de prueba para el sistema de taxis.",
   "locations": [
     {
@@ -857,13 +856,13 @@
     "$date": "2024-07-06T17:56:29.215Z"
   },
   "status": "Activo",
-  "deletedAt": null
+  "deletedAt": null,
+  "name": "rutaA"
 },
 {
   "_id": {
     "$oid": "6689bd8f410d3453ac785896"
   },
-  "Nombre": "rutaB",
   "descripcion": "Ruta de prueba para el sistema de taxis.",
   "locations": [
     {
@@ -1578,13 +1577,13 @@
     "$date": "2024-07-06T17:56:31.262Z"
   },
   "status": "Activo",
-  "deletedAt": null
+  "deletedAt": null,
+  "name": "rutaB"
 },
 {
   "_id": {
     "$oid": "6689bd91410d3453ac785897"
   },
-  "Nombre": "rutaC",
   "descripcion": "Ruta de prueba para el sistema de taxis.",
   "locations": [
     {
@@ -2895,5 +2894,6 @@
     "$date": "2024-07-06T17:56:33.312Z"
   },
   "status": "Activo",
-  "deletedAt": null
+  "deletedAt": null,
+  "name": "rutaC"
 }]
